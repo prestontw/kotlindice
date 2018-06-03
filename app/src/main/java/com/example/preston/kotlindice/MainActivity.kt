@@ -13,6 +13,7 @@ import kotlin.collections.HashMap
 class MainActivity : AppCompatActivity() {
 
     var history = ""
+    val count: HashMap<Int, Int> = HashMap(12)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +46,15 @@ class MainActivity : AppCompatActivity() {
      * and updates the view with new history
      */
     fun clickFunction(v: View) {
-        history = rollsToString(rollDice()) + "\n" + history
+        val rolls = rollDice()
+        val sum = rolls.sum()
+        history = rollsToString(rolls) + "\n" + history
+        count.put(sum, (count.get(sum) ?: 0) + 1)
         updateView()
     }
 
-    val MESSAGE = "com.example.preston.kotlindice.STATS"
     fun goToStats() {
-        val test: HashMap<Int, Int> = HashMap()
-        val intent = Intent(this, Stats::class.java).apply { putExtra(MESSAGE, test) }
+        val intent = Intent(this, Stats::class.java).apply { putExtra(MESSAGE, count) }
         startActivity(intent)
     }
 

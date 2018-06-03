@@ -8,5 +8,6 @@ class Stats : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stats)
+        val counts = intent.getByteExtra(MESSAGE)
     }
 }

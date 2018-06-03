@@ -20,4 +20,9 @@ class ExampleUnitTest {
         assertEquals("4 + 2 = 6", rollsToString(listOf(4, 2)))
         assertEquals("6 + 6 = 12", rollsToString(listOf(6, 6)))
     }
+
+    @Test
+    fun `36 rolls gives identity`() {
+        assertEquals(rollProportions.map { p -> p.key to p.value.toFloat() }.toMap(), idealNumRolls(36))
+    }
 }
