@@ -22,4 +22,6 @@ val rollProportions = hashMapOf(2 to 1,
 fun idealNumRolls(numRolls: Int): Map<Int, Float> =
         rollProportions.map { v -> v.key to v.value.toFloat() / 36 * numRolls }.toMap()
 
-fun mapsToReport(rolls: Map<Int, Int>, ideal: Map<Int, Float>): String = "test"
+fun mapsToReport(rolls: Map<Int, Int>, ideal: Map<Int, Float>): String =
+        (2..12).map { n -> n.toString() + ": " + (rolls.get(n) ?: 0).toString() + "/" + (ideal.get(n) ?: 0).toString() }
+                .reduce({acc, cur -> acc + "\n" + cur})

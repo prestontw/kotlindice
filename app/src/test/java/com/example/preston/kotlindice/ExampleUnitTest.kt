@@ -30,16 +30,16 @@ class ExampleUnitTest {
     fun `empty rolls gives zeros compared to identity`() {
         val ideal = idealNumRolls(36)
         val rolls = HashMap<Int, Int>().toMap()
-        assertEquals("2: 0/1\n" +
-                "3: 0/2\n" +
-                "4: 0/3\n" +
-                "5: 0/4\n" +
-                "6: 0/5\n" +
-                "7: 0/6\n" +
-                "8: 0/5\n" +
-                "9: 0/4\n" +
-                "10: 0/3\n" +
-                "11: 0/2\n" +
-                "12: 0/1\n", mapsToReport(rolls, ideal))
+        assertEquals("2: 0/1.0\n" +
+                "3: 0/2.0\n" +
+                "4: 0/3.0\n" +
+                "5: 0/4.0\n" +
+                "6: 0/5.0\n" +
+                "7: 0/6.0\n" +
+                "8: 0/5.0\n" +
+                "9: 0/4.0\n" +
+                "10: 0/3.0\n" +
+                "11: 0/2.0\n" +
+                "12: 0/1.0", mapsToReport(rolls, ideal))
     }
 }
