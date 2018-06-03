@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun goToStats() {
-        val intent = Intent(this, Stats::class.java).apply { putExtra(MESSAGE, count) }
+        val extras = Bundle().apply { putSerializable(MESSAGE, count) }
+        val intent = Intent(this, Stats::class.java).apply { putExtras(extras) }
         startActivity(intent)
     }
 
