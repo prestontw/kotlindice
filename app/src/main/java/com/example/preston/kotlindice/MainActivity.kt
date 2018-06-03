@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val text = findViewById<TextView>(R.id.history)
+        text.setOnClickListener({v -> clickFunction(v)})
     }
 
     fun ClosedRange<Int>.random() = Random().nextInt(endInclusive - start) + start
