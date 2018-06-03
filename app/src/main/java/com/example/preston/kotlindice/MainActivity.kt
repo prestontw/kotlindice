@@ -3,6 +3,7 @@ package com.example.preston.kotlindice
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +22,14 @@ class MainActivity : AppCompatActivity() {
      * and updates the view with new history
      */
     fun clickFunction(v: View) {
-        history = rollsToString(rollDice())
+        history = rollsToString(rollDice()) + "\n" + history
+        updateView()
+    }
+
+    fun updateView() {
+        // R.layout.activity_main set text
+        val v = findViewById<TextView>(R.id.history)
+        v.text = history
     }
 
     fun rollDice(): List<Int> {
