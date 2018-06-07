@@ -61,6 +61,8 @@ class MainActivity : AppCompatActivity() {
 
     fun updateView() {
         // R.layout.activity_main set text
+        // maybe save reference to this so don't need to keep on finding it
+        // when updating view?
         val v = findViewById<TextView>(R.id.history)
         v.text = history
     }
