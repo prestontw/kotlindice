@@ -2,7 +2,7 @@ package com.example.preston.kotlindice
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_stats.*;
 
 class Stats : AppCompatActivity() {
 
@@ -12,6 +12,6 @@ class Stats : AppCompatActivity() {
         val counts: HashMap<Int, Int> = intent.extras?.getSerializable(MESSAGE) as HashMap<Int, Int>
         val total = counts.values.sum()
         val ideal = idealNumRolls(total)
-        findViewById<TextView>(R.id.report).text = mapsToReport(counts, ideal)
+        report.text = mapsToReport(counts, ideal) + "\n\n(0..7).random() + (0..7).random()"
     }
 }
