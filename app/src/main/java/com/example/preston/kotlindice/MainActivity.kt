@@ -48,7 +48,8 @@ class MainActivity : AppCompatActivity() {
     fun clickFunction(v: View) {
         val rolls = rollDice()
         val sum = rolls.sum()
-        history = history + "\n" + rollsToString(rolls)
+        history = if (history.length == 0) rollsToString(rolls)
+        else history + "\n" + rollsToString(rolls)
         count.put(sum, (count.get(sum) ?: 0) + 1)
         updateView()
     }
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         // maybe save reference to this so don't need to keep on finding it
         // when updating view?
         historyView.text = history
-        scroll.fullScroll(View.FOCUS_DOWN)
+        scroll.post({ ->  scroll.fullScroll(View.FOCUS_DOWN)})
     }
 
     fun rollDice(): List<Int> =
