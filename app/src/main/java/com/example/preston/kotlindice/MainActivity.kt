@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.TextView
 import java.util.*
 import kotlin.collections.HashMap
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,8 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val text = findViewById<TextView>(R.id.history)
-        text.setOnClickListener({v -> clickFunction(v)})
+        historyView.setOnClickListener({v -> clickFunction(v)})
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     fun clickFunction(v: View) {
         val rolls = rollDice()
         val sum = rolls.sum()
-        history = rollsToString(rolls) + "\n" + history
+        history = history + "\n" + rollsToString(rolls)
         count.put(sum, (count.get(sum) ?: 0) + 1)
         updateView()
     }
@@ -63,8 +63,8 @@ class MainActivity : AppCompatActivity() {
         // R.layout.activity_main set text
         // maybe save reference to this so don't need to keep on finding it
         // when updating view?
-        val v = findViewById<TextView>(R.id.history)
-        v.text = history
+        historyView.text = history
+        scroll.fullScroll(View.FOCUS_DOWN)
     }
 
     fun rollDice(): List<Int> =
