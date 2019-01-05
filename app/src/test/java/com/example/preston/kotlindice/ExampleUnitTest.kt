@@ -17,8 +17,8 @@ class ExampleUnitTest {
 
     @Test
     fun `rolls to whatever is correct`() {
-        assertEquals("4 + 2 = 6", rollsToString(listOf(4, 2)))
-        assertEquals("6 + 6 = 12", rollsToString(listOf(6, 6)))
+        assertEquals("4 + 2 = 6", rollsToString(null, Pair(4, 2)))
+        assertEquals("6 + 6 = 12", rollsToString(null, Pair(6, 6)))
     }
 
     @Test

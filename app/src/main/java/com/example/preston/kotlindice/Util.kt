@@ -1,9 +1,35 @@
 package com.example.preston.kotlindice
 
-fun rollsToString(a : List<Int>): String {
-    val rest = a.drop(1)
-    return rest.fold(a.first().toString()) {str: String, cur: Int -> str + " + " + cur.toString()} +
-            " = " + a.sum().toString()
+fun rollsToString(previous: Pair<Int, Int>?, current: Pair<Int, Int>?): String {
+    if (previous == null) {
+        return rollToString(current)
+    }
+    else {
+        return rollToString(previous) + "\n" + rollToString(current)
+    }
+}
+
+fun rollToString(r: Pair<Int, Int>?): String {
+    if (r == null) {
+        return ""
+    }
+    else {
+        return r.first.toString() + " + " + r.second.toString() + " = " + (r.first + r.second).toString()
+    }
+}
+
+fun getNewRoll(previous: Pair<Int, Int>?, current: Pair<Int, Int>): Pair<Int, Int> {
+    if (previous == null) {
+        return current
+    }
+    else {
+        if (previous.first == current.first && previous.second == current.second) {
+            return Pair(current.first - 1, current.second + 1)
+        }
+        else {
+            return current
+        }
+    }
 }
 
 val MESSAGE = "com.example.preston.kotlindice.counts"

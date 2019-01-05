@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var history = ""
+    var previous: Pair<Int, Int>? = null
+    var current: Pair<Int, Int>? = null
     val count: HashMap<Int, Int> = HashMap(12)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,12 +47,13 @@ class MainActivity : AppCompatActivity() {
      * and updates the view with new history
      */
     fun clickFunction(v: View) {
+        previous = current
         val rolls = rollDice()
-        val sum = rolls.sum()
-        history = if (history.length == 0) rollsToString(rolls)
-        else history + "\n" + rollsToString(rolls)
+        val sum = rolls.first + rolls.second
+        current = getNewRoll(previous, rolls)
         count.put(sum, (count.get(sum) ?: 0) + 1)
-        updateView()
+        val text = rollsToString(previous, current)
+        updateView(text)
     }
 
     fun goToStats() {
@@ -60,16 +62,16 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun updateView() {
+    fun updateView(t: String) {
         // R.layout.activity_main set text
         // maybe save reference to this so don't need to keep on finding it
         // when updating view?
-        historyView.text = history
+        historyView.text = t
         scroll.post({ ->  scroll.fullScroll(View.FOCUS_DOWN)})
     }
 
-    fun rollDice(): List<Int> =
-        listOf(rollDi(), rollDi())
+    fun rollDice(): Pair<Int, Int> =
+        Pair(rollDi(), rollDi())
 
     fun rollDi(): Int {
         return (1..7).random()
