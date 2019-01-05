@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.main, menu)
+        inflater.inflate(R.menu.track, menu)
         return true
     }
 
@@ -33,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         R.id.action_stats -> {
             // switch to other activity
             goToStats()
+            true
+        }
+        R.id.action_track -> {
+            // switch to track activity
+            goToTrack()
             true
         }
         else -> {
@@ -59,6 +65,11 @@ class MainActivity : AppCompatActivity() {
     fun goToStats() {
         val extras = Bundle().apply { putSerializable(MESSAGE, count) }
         val intent = Intent(this, Stats::class.java).apply { putExtras(extras) }
+        startActivity(intent)
+    }
+
+    fun goToTrack() {
+        val intent = Intent(this, RollTracker::class.java)
         startActivity(intent)
     }
 

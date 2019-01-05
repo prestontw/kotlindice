@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KotlinDice</string>
+    <string name="title_activity_roll_tracker">RollTracker</string>
 </resources>
